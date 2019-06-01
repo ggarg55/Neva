@@ -1,0 +1,6 @@
+framework module Pods_Neva {
+  umbrella header "Pods-Neva-umbrella.h"
+
+  export *
+  module * { export * }
+}
