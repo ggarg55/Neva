@@ -18,6 +18,8 @@ class UserListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getUsers()
+        userTableView.estimatedRowHeight = 300
+        userTableView.rowHeight = UITableView.automaticDimension
     }
 }
 
@@ -31,11 +33,6 @@ extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
         cell.confiureCell(data: usersList[indexPath.row])
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
-    }
-    
 }
 
 //TODO: Handle This in API Manager
@@ -45,7 +42,6 @@ extension UserListViewController {
         service.getUserList { [weak self] (list) in
             if let list = list, let users = service.filterList(list) {
                 DispatchQueue.main.async {
-                    //print(list)
                     self?.usersList = users
                     self?.userTableView.reloadData()
                 }
